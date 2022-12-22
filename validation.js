@@ -52,13 +52,12 @@ const applyFormValidation = (form) => {
   )
   checkValidationForField(form.image)
 }
-// const replaceByKeyInFormData = (formData, key, el) => {
-//   const [files, value] = el;
-//   formData.set(key, files[0].name);
-//   console.log(value);
-//   return formData
-// }
-const getFormData = (form) => new FormData(form) //replaceByKeyInFormData(new FormData(form), 'image', form.image)
+const replaceByKeyInFormData = (formData, key, el) => {
+  const value = Array.from(el).filter(s => s.checked).reduce((skillArray, skill) => [...skillArray, skill.value], [])
+  formData.set(key, value);
+  return formData
+}
+const getFormData = (form) => replaceByKeyInFormData(new FormData(form), 'skill', form.skill)
 const submitForm = (event) => {
   event.preventDefault();
   const form = event.target
@@ -134,7 +133,6 @@ const checkValidationForRadioField = (
   errorMsg=requiredRadioErrorMsg(field.name),
   successClass="genders"
 ) => {
-  debugger;
   isFormValid(form) && form.querySelector('button[type="submit"]').removeAttribute('disabled')
   !valid ? setErrorFor(field[0], errorMsg, "radio") : setSuccessFor(field[0], "radio", successClass)
 }
