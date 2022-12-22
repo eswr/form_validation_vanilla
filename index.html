@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gloify_form</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      media="all"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
+    />
+    <script src="/validation.js" async defer crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>User Registration Form</h2>
+      </div>
+
+      <form id="form" class="form" name="infoForm" enctype='multipart/form-data'>
+        <div class="form-control">
+          <label>Firstname</label>
+          <input
+            type="text"
+            placeholder="Firstname"
+            minlength="3"
+            id="firstname"
+            name="firstname"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label>Lastname</label>
+          <input type="text" placeholder="Lastname" id="lastname" name="lastname"/>
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label>Email</label>
+          <input type="email" placeholder="Email" id="email" name="email" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label>Password</label>
+          <input type="password" placeholder="Password" id="password" name="password" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            id="cnfpassword"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label>Date of Birth</label>
+          <input type="date" min="01-02-1922" max="2022-12-15" id="date1" name="date1" />
+          <small>Error message</small>
+        </div>
+        <div class="genders">
+          <p>Gender</p>
+          <input type="radio" id="male" name="gender" value="MALE" />
+          <label for="html">Male</label><br />
+          <input type="radio" id="female" name="gender" value="FEMALE" />
+          <label for="css">Female</label><br />
+          <input type="radio" id="others" name="gender" value="OTHER" />
+          <label for="javascript">Others</label><br />
+          <small>Error message</small>
+        </div>
+
+        <br />
+        <div class="skills-list">
+          <p>Skills</p>
+          <input type="checkbox" id="skill1" name="skill" value="html" />
+          <label for="skill1"> HTML</label><br />
+          <input type="checkbox" id="skill2" name="skill" value="css" />
+          <label for="skill2"> CSS</label><br />
+          <input type="checkbox" id="skill3" name="skill" value="java" />
+          <label for="skill3"> JAVA</label><br />
+          <input type="checkbox" id="skill4" name="skill" value="git" />
+          <label for="skill4"> GIT</label><br />
+          <input type="checkbox" id="skill5" name="skill" value="jira" />
+          <label for="skill5"> JIRA</label><br />
+          <input type="checkbox" id="skill6" name="skill" value="react" />
+          <label for="skill6"> REACT</label><br />
+
+          <small>Error message</small>
+        </div>
+        <div class="image-wrapper">
+          <br /><br />
+          <label>Upload Images</label>
+          <input type="file" id="image" name="image" /><br />
+          <small>Error message</small>
+        </div>
+        <button type="submit" disabled="disabled">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
