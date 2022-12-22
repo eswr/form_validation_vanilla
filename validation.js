@@ -27,7 +27,8 @@ const isFormValid = (form) => {
     isFormFieldValid(form.firstname) &&
     isFormFieldValid(form.lastname) &&  
     isPassingRadio(form.gender) &&
-    isPassingRadio(form.skill)
+    isPassingRadio(form.skill) &&
+    isPassingFile(form.image)
 }
 const applyFormValidation = (form) => {
   checkValidationForField(form.firstname)
@@ -40,13 +41,16 @@ const applyFormValidation = (form) => {
   checkValidationForRadioField(
     form.gender,
     isPassingRadio(form.gender),
-    errorMsg="Please select a gender"
+    errorMsg="Please select a gender",
+    "genders"
   )
   checkValidationForRadioField(
     form.skill,
     isPassingRadio(form.skill),
-    errorMsg="Please select at least skill"
+    errorMsg="Please select at least skill",
+    "skills-list"
   )
+  checkValidationForField(form.image)
 }
 // const replaceByKeyInFormData = (formData, key, el) => {
 //   const [files, value] = el;
@@ -116,10 +120,7 @@ let cleanForm;
   Array.from(form.skill).map(radioOrChecked => radioOrChecked.addEventListener('click',
     (e) => checkValidationForField(e.target)))
 
-  // // form.gender.addEventListener('blur', (e) => checkValidationForField(e.target))
-  // form.skill.addEventListener('blur', (e) => checkValidationForRadioField(e.target))
-
-  // // form.image.addEventListener('blur', (e) => checkValidationForField(e.target))
+  form.image.addEventListener('change', (e) => checkValidationForField(e.target))
 })();
 const isFormFieldTest = (fieldValue, defaultValue) => fieldValue !== defaultValue
 const isPassingRequired = (value) => isFormFieldTest(value, '')
@@ -130,8 +131,15 @@ const isPassingRadio = field => Array.from(field).reduce((selected, radio) =>  s
 const checkValidationForRadioField = (
   field,
   valid=isPassingRadio(field),
-  errorMsg=requiredRadioErrorMsg(field.name)
-) => !valid ? setErrorFor(field[0], errorMsg, "radio") : setSuccessFor(field[0], "radio", "genders")
+  errorMsg=requiredRadioErrorMsg(field.name),
+  successClass="genders"
+) => {
+  debugger;
+  isFormValid(form) && form.querySelector('button[type="submit"]').removeAttribute('disabled')
+  !valid ? setErrorFor(field[0], errorMsg, "radio") : setSuccessFor(field[0], "radio", successClass)
+}
+
+const isPassingFile = (field) => field.value != ""
 
 const requiredErrorMsg = (name) => name+" can not be blank"
 const emailErrorMsg = () => "Not a valid email"
